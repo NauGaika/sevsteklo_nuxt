@@ -1,0 +1,57 @@
+<template lang="pug">
+section.products
+  h2.products__title.
+    Категории товаров
+  div.CategoryListElementContainer
+    product-element(
+      v-for="cat in allCategory"
+      v-bind:key="cat.id"
+      v-bind:link="cat['link']"
+      v-bind:img="cat['imgSrc']"
+      v-bind:name="cat['title']"
+      v-bind:description="cat['description']"
+      )
+</template>
+
+<script>
+import CategoryListElement from './CategoryListElement'
+import axios from 'axios'
+
+export default {
+  data () {
+    return {
+      path: `/api/get-category_list/`,
+      allCategory: []
+    }
+  },
+  components: {
+    'product-element': CategoryListElement
+  },
+  mounted: function () {
+    axios.get(this.path)
+      .then(response => {
+        this.allCategory = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+}
+</script>
+
+<style>
+.CategoryListElementContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+.products {
+  padding-top: 2em;
+  text-align: center;
+  background: #fff;
+}
+
+.products__title {
+  margin-bottom: 1em;
+}
+
+</style>
