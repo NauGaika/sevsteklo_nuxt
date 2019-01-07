@@ -32,7 +32,7 @@ const HeaderMenu = {
   },
   getters: {
     getMenuPoints: state => {
-      return state.menuPoints
+      return []
     }
   }
 }
