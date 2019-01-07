@@ -87,7 +87,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: '/img/stub/StubTable/'
+      thumbnailDir: process.env.baseUrl + '/img/stub/StubTable/'
     }
   },
   components: {

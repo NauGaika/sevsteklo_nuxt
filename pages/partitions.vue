@@ -102,7 +102,7 @@ export default {
               }
             ],
       galleryFilter: 'all',
-      thumbnailDir: '/img/stub/StubPartitionImg/'
+      thumbnailDir: process.env.baseUrl + '/img/stub/StubPartitionImg/'
     }
   },
   components: {

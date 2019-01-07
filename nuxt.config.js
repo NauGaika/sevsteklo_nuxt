@@ -2,6 +2,9 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://sev-steklo.ru'
+  },
   head: {
     title: 'Мир стекла и зеркал г. Севастополь',
     htmlAttrs: {

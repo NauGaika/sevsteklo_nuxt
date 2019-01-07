@@ -92,7 +92,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: '/img/stub/StubSkinali/'
+      thumbnailDir: process.env.baseUrl + '/img/stub/StubSkinali/'
     }
   },
   components: {

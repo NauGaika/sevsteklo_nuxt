@@ -27,7 +27,7 @@ export default {
   data: function () {
     return {
       galleryFilter: 'all',
-      thumbnailDir: 'img/stub/StubGlassReplace/'
+      thumbnailDir: process.env.baseUrl + 'img/stub/StubGlassReplace/'
     }
   },
   components: {

@@ -74,7 +74,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: '/img/stub/StubMirror/'
+      thumbnailDir: process.env.baseUrl + '/img/stub/StubMirror/'
     }
   },
   components: {

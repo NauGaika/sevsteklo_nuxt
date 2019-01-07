@@ -72,7 +72,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: 'img/stub/StubGlassPaint/'
+      thumbnailDir: process.env.baseUrl + 'img/stub/StubGlassPaint/'
     }
   },
   components: {

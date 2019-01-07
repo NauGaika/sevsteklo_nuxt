@@ -84,12 +84,16 @@ export default {
           'filter': 'anim'
         }
       ],
-      galleryFilter: 'all',
-      thumbnailDir: 'img/stub/StubCupboards/'
+      galleryFilter: 'all'
     }
   },
   components: {
     'text-block': TextBlock
+  },
+  computed: {
+    thumbnailDir () {
+      return process.env.baseUrl + '/img/stub/StubCupboards/'
+    }
   },
   methods: {
     showLightbox: function (imageName) {
@@ -98,6 +102,9 @@ export default {
     updateFilter (filterName) {
       this.galleryFilter = filterName
     }
+  },
+  created () {
+    console.log(process)
   }
 }
 </script>

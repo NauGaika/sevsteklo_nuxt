@@ -67,7 +67,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: '/img/stub/StubRepair/'
+      thumbnailDir: process.env.baseUrl + '/img/stub/StubRepair/'
     }
   },
   components: {

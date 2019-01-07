@@ -80,7 +80,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: '/img/stub/StubShelf/'
+      thumbnailDir: process.env.baseUrl + '/img/stub/StubShelf/'
     }
   },
   components: {

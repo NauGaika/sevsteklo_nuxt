@@ -79,7 +79,7 @@ export default {
         }
       ],
       galleryFilter: 'all',
-      thumbnailDir: 'img/stub/StubMirrorPanels/'
+      thumbnailDir: process.env.baseUrl + 'img/stub/StubMirrorPanels/'
     }
   },
   components: {
