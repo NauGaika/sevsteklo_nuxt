@@ -40,18 +40,37 @@ export default {
 </script>
 
 <style>
-.CategoryListElementContainer{
-  display: flex;
-  flex-wrap: wrap;
-}
-.products {
-  padding-top: 2em;
-  text-align: center;
-  background: #fff;
-}
+@media (min-width: 600px)
+{
+    .CategoryListElementContainer{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .products {
+      padding-top: 2em;
+      text-align: center;
+      background: #fff;
+    }
 
-.products__title {
-  margin-bottom: 1em;
+    .products__title {
+      margin-bottom: 1em;
+    }
+}
+@media (max-width: 600px) {
+  .CategoryListElementContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .products {
+    padding-top: 2em;
+    text-align: center;
+    background: #fff;
+  }
+
+  .products__title {
+    margin-bottom: 1em;
+  }
 }
 
 </style>

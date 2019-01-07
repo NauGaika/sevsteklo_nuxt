@@ -14,7 +14,7 @@ import FooterContainer from '~/components/Footer/FooterContainer.vue'
       'header-container': HeaderContainer,
       'footer-container': FooterContainer
     },
-    beforeCreate: function () {
+    created: function () {
       this.$store.dispatch('HeaderMenu/getMenuPointsFromDb')
       this.$store.dispatch('CommonProps/getCommonProps')
     },

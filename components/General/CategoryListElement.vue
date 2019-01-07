@@ -30,8 +30,12 @@ export default {
 </script>
 
 <style>
+@media (min-width: 600px) {
+  .CategoryListElement {
+    width: calc(30%);
+  }
+}
 .CategoryListElement {
-  width: calc(30%);
   margin: .5em;
   box-shadow: 0 .1em .2em 0em rgb(0,0,0,0.4);
   overflow: hidden;
