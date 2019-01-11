@@ -4,8 +4,24 @@
     div.container
       nuxt
     footer-container
+    div
+      img(src="https://mc.yandex.ru/watch/51433120"
+          style="position:absolute; left:-9999px;"
+          alt="")
 </template>
 <script>
+if (process.client) {
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym")
+   ym(51433120, "init", {
+        id:51433120,
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   })
+}
 import HeaderContainer from '~/components/Header/HeaderContainer.vue'
 import FooterContainer from '~/components/Footer/FooterContainer.vue'
   export default {
