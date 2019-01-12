@@ -15,26 +15,12 @@ section.products
 
 <script>
 import CategoryListElement from './CategoryListElement'
-import axios from 'axios'
+
 
 export default {
-  data () {
-    return {
-      path: `/api/get-category_list/`,
-      allCategory: []
-    }
-  },
+  props: ['allCategory'],
   components: {
     'product-element': CategoryListElement
-  },
-  mounted: function () {
-    axios.get(this.path)
-      .then(response => {
-        this.allCategory = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
   }
 }
 </script>
