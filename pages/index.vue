@@ -29,7 +29,6 @@ export default {
   },
   asyncData (context) {
      return axios.get(`http://localhost:3000/api/get-category_list/`).then((res) => {
-         console.log(res.data)
          return {
            slides: [
              {name:"Разбилось окно?", content:"Заменим быстро и качественно.", img:"", src:"/glass-replace"},
