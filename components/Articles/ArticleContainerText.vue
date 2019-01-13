@@ -1,7 +1,7 @@
 <template lang="pug">
   div
-    my-input(v-model="name", name="Заголовок блока")
-    my-input-text(v-model="content", name="Наполнение")
+    my-input(v-model="title", name="Заголовок блока")
+    my-input-text(v-model="content", name="Контент")
     art-button(name="Удалить" color="red" @click="deleteContainer()")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
@@ -21,12 +21,25 @@ export default {
   props: ['elemIndex'],
   data () {
     return {
-      name: "",
-      content: ""
     }
   },
   computed: {
-
+    title: {
+      set (value) {
+        this.$parent.containers[this.elemIndex].title = value
+      },
+      get () {
+        return this.$parent.containers[this.elemIndex].title
+      }
+    },
+    content: {
+      set (value) {
+        this.$parent.containers[this.elemIndex].content = value
+      },
+      get () {
+        return this.$parent.containers[this.elemIndex].content
+      }
+    }
   },
   beforeCreate () {},
   created () {},

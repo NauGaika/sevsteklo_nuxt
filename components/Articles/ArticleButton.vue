@@ -1,5 +1,5 @@
 <template lang="pug">
-.ArticleButton(@click="$emit('click')" :style="'background:' + color")
+.ArticleButton(@click="$emit('click')" :style="'background:' + (color ? color : 'DodgerBlue')")
   span {{name}}
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
@@ -8,7 +8,7 @@ export default {
   components: {},
   mixins: [],
   model: [],
-  props: ['name', 'color'],
+  props: ['name', 'color', 'deactive'],
   data () {
     return {}
   },

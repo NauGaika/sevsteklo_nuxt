@@ -1,16 +1,20 @@
 <template lang="pug">
 div
-  h1 Добавить страницу (/articles/{{translitName}})
+  h1 Добавить страницу ({{translitName}})
   my-input(v-model="name", name="Заголовок страницы")
+  my-input(v-model="description", name="Описание странцы")
   div(v-for="(conteiner, key) in containers" :key="key + '_container'")
     art-cont-text(v-if="conteiner.type == 'text'" :elemIndex="key")
     art-cont-img(v-if="conteiner.type == 'img'" :elemIndex="key")
   div.ControlPanel
     art-button(name='Добавить текст' @click="addContainer('text')" color="red")
     art-button(name='Добавить изображение' @click="addContainer('img')" color="DodgerBlue")
+    art-button(name='Создать страницу'  color="Green" @click="test")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
+import axios from 'axios'
+
 import ArticleInputText from '~/components/Articles/ArticleInputText.vue'
 import ArticleButton from '~/components/Articles/ArticleButton.vue'
 import ArticleContainerText from '~/components/Articles/ArticleContainerText.vue'
@@ -27,7 +31,8 @@ export default {
   props: [],
   asyncData () {
     return {
-      name: "Стеклянные перегородки",
+      name: "",
+      description: "",
       containers: [
 
       ]
@@ -47,6 +52,9 @@ export default {
   beforeDestroy () {},
   destroyed () {},
   methods: {
+    test () {
+      console.log(this.containers)
+    },
     addContainer (containerType) {
       let newContainer = {}
       if (containerType == "text") {
@@ -56,7 +64,8 @@ export default {
       }
       if (containerType == "img") {
         newContainer.type = "img"
-        newContainer.title = ""
+        newContainer.alts = ""
+        newContainer.files = []
         newContainer.content = {
         }
       }
