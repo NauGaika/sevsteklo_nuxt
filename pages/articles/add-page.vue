@@ -61,7 +61,6 @@ export default {
           description: this.description, 
           translit: this.translitName
         }))
-      console.log(newFormData)
       axios.post('/api/article/create-article', newFormData, {
         headers: {
           'Content-Type': 'multipart/form-data'

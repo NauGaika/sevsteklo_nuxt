@@ -38,6 +38,8 @@ export default {
   }
   .StubDescription {
     text-align: center;
+    line-height: 1.7em;
+    margin-bottom: .5em;
   }
   .StubDescription img {
     display: inline-block;

@@ -130,12 +130,11 @@ a, a:hover, a:active {
 .exampleImg {
   display: inline-block !important;
   padding: 0.3em;
-  box-shadow: 0 0 0.5em black;
+  box-shadow: 0 0 0.1em rgb(0,0,0,0.3);
   width: 250px;
-  margin: 0 auto;
-  height: 180px;
+  height: auto;
   cursor: pointer;
-  margin-bottom: 1em;
+  margin-bottom: .3em;
 }
 .catTitle {
   margin-top: 1em;
