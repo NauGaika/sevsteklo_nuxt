@@ -9,7 +9,7 @@ div
   div.ControlPanel
     art-button(name='Добавить текст' @click="addContainer('text')" color="red")
     art-button(name='Добавить изображение' @click="addContainer('img')" color="DodgerBlue")
-    art-button(name='Создать страницу'  color="Green" @click="test")
+    art-button(name='Создать страницу'  color="Green" @click="addPage")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
@@ -52,8 +52,25 @@ export default {
   beforeDestroy () {},
   destroyed () {},
   methods: {
-    test () {
-      console.log(this.containers)
+    addPage () {
+      let newFormData = new FormData()
+      newFormData.append('json', JSON.stringify(
+        {
+          containers: this.containers, 
+          name: this.name, 
+          description: this.description, 
+          translit: this.translitName
+        }))
+      console.log(newFormData)
+      axios.post('/api/article/create-article', newFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((res) => {
+        console.log('страница создана. Ее адресс /articles/' + this.translitName)
+      }).catch(() => {
+        alert('Ошибка добавления страницы')
+      })
     },
     addContainer (containerType) {
       let newContainer = {}
@@ -64,10 +81,7 @@ export default {
       }
       if (containerType == "img") {
         newContainer.type = "img"
-        newContainer.alts = ""
         newContainer.files = []
-        newContainer.content = {
-        }
       }
       if (newContainer){
         this.containers.push(newContainer)

@@ -48,7 +48,6 @@ export default {
   }
   .ArticleInputBig textarea {
     resize:vertical;
-    width: 100%;
     font-size: 1em;
     flex-grow: 1;
     vertical-align: top;

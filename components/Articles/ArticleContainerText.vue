@@ -1,8 +1,8 @@
 <template lang="pug">
-  div
+  .ArticleContainerText
     my-input(v-model="title", name="Заголовок блока")
     my-input-text(v-model="content", name="Контент")
-    art-button(name="Удалить" color="red" @click="deleteContainer()")
+    art-button(name="Удалить блок" color="red" @click="deleteContainer()")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
@@ -60,4 +60,8 @@ export default {
 }
 </script>
 <style>
+.ArticleContainerText{
+  border: 1px solid grey;
+  margin: 1em 0;
+}
 </style>

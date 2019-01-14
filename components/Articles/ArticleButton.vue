@@ -8,7 +8,7 @@ export default {
   components: {},
   mixins: [],
   model: [],
-  props: ['name', 'color', 'deactive'],
+  props: ['name', 'color'],
   data () {
     return {}
   },

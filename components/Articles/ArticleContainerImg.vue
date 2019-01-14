@@ -15,6 +15,7 @@
       :color="fileAddCheck ? '' : 'grey'" 
       @click="sendImg"
       )
+    art-button(name="Удалить блок" color="red" @click="deleteContainer()")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
@@ -35,51 +36,19 @@ export default {
   props: ['elemIndex'],
   data () {
     return {
-      files: [
-        {
-          id: 1,
-          alt: "Виллиан ds fdsaasd fdsaf dsaf dsaf ds",
-          src: "https://pp.userapi.com/c850728/v850728337/8c5d6/8OxLEnCxhUQ.jpg"
-        },
-        {
-          id: 2,
-          alt: "Romewar",
-          src: "https://www.romewar.ru/img/intro.gif"
-        },
-        {
-          id: 3,
-          alt: "Romewar",
-          src: "https://www.romewar.ru/img/intro.gif"
-        },
-        {
-          id: 4,
-          alt: "Romewar",
-          src: "https://www.romewar.ru/img/intro.gif"
-        },
-        {
-          id: 5,
-          alt: "Виллиан",
-          src: "https://pp.userapi.com/c850728/v850728337/8c5d6/8OxLEnCxhUQ.jpg"
-        },
-        {
-          id: 6,
-          alt: "Виллиан",
-          src: "https://pp.userapi.com/c850728/v850728337/8c5d6/8OxLEnCxhUQ.jpg"
-        }
-      ],
       alt: "",
       filesConf: undefined,
     }
   },
   computed: {
+    files: {
+      get () {
+        return this.$parent.containers[this.elemIndex].files
+      }
+    },
     fileAddCheck: {
       get () {
         return this.filesConf && (this.alt.length > 3)
-      }
-    },
-    container: {
-      get () {
-        return this.$parent.containers[this.elemIndex]
       }
     }
   },
@@ -98,9 +67,23 @@ export default {
       for(let i = 0; i < this.files.length; i++) {
         if (id == this.files[i].id) {
           this.files.splice(i, 1)
+          this.deleteImgFromDB(id)
           break;
         }
       }
+    },
+    deleteImgFromDB (id) {
+      let newFormData = new FormData()
+      newFormData.append('id', id)
+      axios.post('/api/article/del-img', newFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((res) => {
+        console.log(id + ' файл удален из базы')
+      }).catch(() => {
+        alert('Ошибка удаления файла')
+      })
     },
     sendImg () {
       if (this.fileAddCheck) {
@@ -112,12 +95,17 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         }).then((res) => {
-          console.log('Файл загружен')
-          console.log(res)
+          this.addImg(res.data)
         }).catch(() => {
-          console.log('Файл не загружен')
+          alert('Ошибка отправки файла на сервер')
         })
       }
+    },
+    addImg (img) {
+      this.files.push(img)
+    },
+    deleteContainer () {
+        this.$parent.deleteContainer(this.elemIndex)
     }
   },
 }
