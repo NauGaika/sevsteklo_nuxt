@@ -4,7 +4,7 @@ module.exports = {
   */
   router: {
     middleware: ['start']
-  }
+  },
   env: {
     baseUrl: process.env.BASE_URL || 'http://sev-steklo.ru'
   },
