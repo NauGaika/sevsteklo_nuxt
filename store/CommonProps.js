@@ -41,7 +41,7 @@ const CommonProps = {
     },
     getCommonProp: state => name => {
       let par = state.commonProps[name]
-      if (par) {
+      if (par != undefined) {
         return state.commonProps[name].value
       } else {
         return `Параметра ${name} нет в базе`
