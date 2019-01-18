@@ -21,7 +21,6 @@ export default {
   created () {},
   beforeMount () {},
   mounted () {
-    console.log(this)
   },
   beforeUpdate () {},
   updated () {},

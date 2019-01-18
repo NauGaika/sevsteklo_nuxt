@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     changeMenuState () {
-      console.log('test')
       this.menuIsOpen = !this.menuIsOpen
     },
     changeMenuPointState(e) {

@@ -114,6 +114,9 @@ a, a:hover, a:active {
 }
 .exampleImg {
   display: inline-block !important;
+  width: 300px;
+  margin: .3em;
+  box-shadow: 0 0 .5em rgb(0, 0, 0, 0.3);
   cursor: pointer;
 }
 .catTitle {

@@ -102,9 +102,6 @@ export default {
     updateFilter (filterName) {
       this.galleryFilter = filterName
     }
-  },
-  created () {
-    console.log(process)
   }
 }
 </script>

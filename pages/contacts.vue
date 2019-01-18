@@ -1,24 +1,16 @@
 <template lang="pug">
 div.container
-  div
-    h2 Где мы находимся?
+  text-block(title="Где мы находимся?")
     span.adress
-      i(style="font-size :20px; color: #008dd2;", class="fa fa-home")
       span.
         г. Севастополь ул.Острякова 166Б
-  div
     iframe(src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad21c1a83867d8e2c88ac7f354714eb10040db20306dded2fc1ab4a41030b81a3&amp;source=constructor",
     width="100%",
     height="600",
     frameborder="0")
-  div(class="col-12 add_space")
-    h2 Есть ли у нас парковка?
-  span.add_space
-    span.add_space_h У нас весьма просторная паркова и всегда найдется место для вашего автомобиля
-  div(class="col-12 add_space")
-    h2 Как мы выглядим?
-  div(class="col-12 add_space")
-    h2 Как с нами связаться?
+  text-block(title="Есть ли у нас парковка?")
+    span У нас весьма просторная паркова и всегда найдется место для вашего автомобиля
+  text-block(title="Как с нами связаться?")
     span(class="point_of_contact add_space")
       a(href="tel:+79788167295")
         fa(:icon="fas.faPhone")
@@ -35,15 +27,10 @@ div.container
       a(href="http://www.vk.com/sev_steklo")
         fa(:icon="fab.faVk")
         span(class="add_blue add_space_h") sev_steklo
-  div
-    div.row
-      div(class="col-12 add_space")
-        h2 График нашей работы
-        span.sheduled Мы работаем Пн-Сб 8:00 - 17:00 Вс - выходной
-  div
-    div.row
-      div(class="col-12 add_space")
-        h2 Необходима юридическая информация о нас?
+  text-block(title="График нашей работы")
+    span.sheduled Мы работаем Пн-Сб 8:00 - 17:00 Вс - выходной
+  text-block(title="Необходима юридическая информация о нас?")
+    span(v-for="(val,key) in com_param") {{val.name + ': ' + get_common_prop(key)}} </br>
 </template>
 
 <script>
@@ -61,23 +48,19 @@ export default {
           ]
         }
   },
-  asyncData: function () {
-    let com_param = {
-      organization: {name: 'Наименование', value: ''},
-      inn: {name: 'ИНН', value: ''},
-      ogrnip: {name: 'ОГРНИП', value: ''},
-      okpo: {name: 'ОКПО', value: ''},
-      checking_account: {name: 'р/сч.', value: ''},
-      bank: {name: '', value: ''},
-      bik: {name: 'БИК', value: ''},
-      adress: {name: 'Адрес', value: ''}
+  data: function () {
+    return {
+      com_param: {
+        organization: {name: 'Наименование'},
+        inn: {name: 'ИНН'},
+        ogrnip: {name: 'ОГРНИП'},
+        okpo: {name: 'ОКПО'},
+        checking_account: {name: 'р/сч.'},
+        bank: {name: 'Банк'},
+        bik: {name: 'БИК'},
+        adress: {name: 'Юр. Адрес'}
+      }
     }
-    let dataForPost = []
-    for (let i in com_param) {
-      dataForPost.push(i)
-    }
-    // axios.post('/api/common-props/get-by-dict')
-    return {}
   },
   components: {
     'text-block': TextBlock
@@ -91,6 +74,27 @@ export default {
       }
     },
   methods: {
+    formatTelephone (tel) {
+      let newString = ""
+      if (tel){
+        newString += tel.substring(0,2)
+        newString += " "
+        newString += "("
+        newString += tel.substring(2,5)
+        newString += ")"
+        newString += " "
+        newString += tel.substring(5,8)
+        newString += "-"
+        newString += tel.substring(8,10)
+        newString += "-"
+        newString += tel.substring(10,12)
+        return newString
+      }
+      return tel
+    },
+    get_common_prop (prop) {
+      return this.$store.getters['CommonProps/getCommonProp'](prop)
+    }
   }
 }
 </script>

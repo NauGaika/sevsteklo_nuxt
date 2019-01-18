@@ -29,9 +29,6 @@ export default {
   beforeCreate () {},
   created () {},
   beforeMount () {},
-  mounted () {
-    console.log(this.big_data)
-  },
   beforeUpdate () {},
   updated () {},
   activated () {},

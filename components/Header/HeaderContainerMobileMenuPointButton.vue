@@ -29,9 +29,6 @@ export default {
       this.animateButton(path1, path2, key)
       this.$store.commit('HeaderMenu/changeMenuPointState', key)
     },
-    test () {
-      console.log('test')
-    },
     animateButton: function (path1, path2, key) {
       let isOpen = this.$store.getters['HeaderMenu/getMenuPoints'][key].isOpen
       let interval = 20
