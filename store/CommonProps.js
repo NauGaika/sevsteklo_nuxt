@@ -40,7 +40,7 @@ const CommonProps = {
       return state.commonProps
     },
     getCommonProp: state => name => {
-      par = state.commonProps[name]
+      let par = state.commonProps[name]
       if (par) {
         return state.commonProps[name].value
       } else {
