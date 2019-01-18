@@ -2,6 +2,9 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  router: {
+    middleware: ['start']
+  }
   env: {
     baseUrl: process.env.BASE_URL || 'http://127.0.0.1:3000'
   },

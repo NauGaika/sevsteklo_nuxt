@@ -7,7 +7,7 @@ div.MobileMenu
     div.MobileMenuULContainer(v-bind:class="{ 'MobileMenuULContainer-opened' : menuIsOpen, 'MobileMenuULContainer-closed' : !menuIsOpen }")
         ul
           li(v-for="(point, keyPoint) in this.$store.getters['HeaderMenu/getMenuPoints']")
-            router-link.MobileMenuLink(v-bind:to="point.src" v-if="point.sub_point.length == 0" :title="point.title") {{point.title}}
+            a.MobileMenuLink(:href="point.src" v-if="point.sub_point.length == 0" :title="point.title" @click="changeMenuState") {{point.title}}
             a.MobileMenuTitle(v-if="point.sub_point.length != 0"  @click="changeMenuPointState({refName:'point_'+keyPoint, key: keyPoint})") {{point.title}}
               point-button(v-if="point.sub_point.length != 0" v-bind:ref="'point_'+keyPoint" v-bind:keyPoint="keyPoint")
 
@@ -16,7 +16,7 @@ div.MobileMenu
               v-bind:class="{'MobileMenuSubList-opened' : point.isOpen}"
             )
               li(v-for="sub in point.sub_point" class="sub")
-                router-link.MobileMenuLink(v-bind:to="sub.src" :title="sub.title") {{sub.title}}
+                a.MobileMenuLink(:href="sub.src" :title="sub.title" @click="changeMenuState") {{sub.title}}
 
 </template>
 <script>
@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     changeMenuState () {
+      console.log('test')
       this.menuIsOpen = !this.menuIsOpen
     },
     changeMenuPointState(e) {

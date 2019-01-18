@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div.TextBlock
-      h2.TextBlockCatTitle(v-if="!h1") {{title}}
+      h2.TextBlockCatTitle(v-if="h1") {{title}}
       h1.TextBlockCatTitle(v-else) {{title}}
     div.StubDescription
       slot
@@ -43,7 +43,6 @@ export default {
   }
   .StubDescription img {
     display: inline-block;
-    margin: .5em .5em;
   }
   .StubDescription p {
     text-indent: 20px;

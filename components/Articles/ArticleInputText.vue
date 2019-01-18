@@ -1,7 +1,12 @@
 <template lang="pug">
 div.ArticleInput
   span {{name}}
-  input(type="text" :value="value" :placeholder="name" @input="$emit('input', $event.target.value)")
+  input(
+  :type="is_pass ? 'password' : 'text'" 
+  :value="value" 
+  :placeholder="name" 
+  @input="$emit('input', $event.target.value)" 
+  @blur="$emit('blur', $event.target.value)")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
@@ -9,7 +14,7 @@ export default {
   components: {},
   mixins: [],
   model: [],
-  props: ['value', 'name'],
+  props: ['value', 'name', 'is_pass'],
   data () {
     return {}
   },

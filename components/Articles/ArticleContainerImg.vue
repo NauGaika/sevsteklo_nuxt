@@ -1,6 +1,7 @@
 <template lang="pug">
   .ArticleContainerImg
     h3 Блок изображений
+    my-input(name="Заголовок блока" v-model="title")
     div.ArticleConteinerImgPrevievContainer
       img-prev(
         v-for="(file, key) in files" 
@@ -16,6 +17,14 @@
       @click="sendImg"
       )
     art-button(name="Удалить блок" color="red" @click="deleteContainer()")
+    art-button(
+      v-if="elemIndex != 0"
+      name="Вверх"
+      @click="$parent.changeContainerPlace('up', elemIndex)")
+    art-button(
+      v-if="elemIndex != ($parent.containers.length - 1)"
+      name="Вниз" 
+      @click="$parent.changeContainerPlace('down', elemIndex)")
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
@@ -41,6 +50,11 @@ export default {
     }
   },
   computed: {
+    title: {
+      get () {
+        return this.$parent.containers[this.elemIndex].title
+      }
+    },
     files: {
       get () {
         return this.$parent.containers[this.elemIndex].files

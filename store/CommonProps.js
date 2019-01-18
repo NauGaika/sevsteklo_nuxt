@@ -14,7 +14,7 @@ const CommonProps = {
   actions: {
     getCommonProps ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        const path = `/api/get-all/common_props`
+        const path = `http://127.0.0.1:3000/api/get-all/common_props`
         axios.get(path)
         .then(response => {
           let data = response.data

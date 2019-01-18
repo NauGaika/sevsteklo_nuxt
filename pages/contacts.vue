@@ -38,7 +38,7 @@ div.container
   div
     div.row
       div(class="col-12 add_space")
-        h2(v-on:click="refreshMessage") График нашей работы
+        h2 График нашей работы
         span.sheduled Мы работаем Пн-Сб 8:00 - 17:00 Вс - выходной
   div
     div.row
@@ -61,14 +61,23 @@ export default {
           ]
         }
   },
-  data: function () {
-    return {
-      images: [
-
-      ],
-      galleryFilter: 'all',
-      thumbnailDir: ''
+  asyncData: function () {
+    let com_param = {
+      organization: {name: 'Наименование', value: ''},
+      inn: {name: 'ИНН', value: ''},
+      ogrnip: {name: 'ОГРНИП', value: ''},
+      okpo: {name: 'ОКПО', value: ''},
+      checking_account: {name: 'р/сч.', value: ''},
+      bank: {name: '', value: ''},
+      bik: {name: 'БИК', value: ''},
+      adress: {name: 'Адрес', value: ''}
     }
+    let dataForPost = []
+    for (let i in com_param) {
+      dataForPost.push(i)
+    }
+    // axios.post('/api/common-props/get-by-dict')
+    return {}
   },
   components: {
     'text-block': TextBlock
@@ -82,12 +91,6 @@ export default {
       }
     },
   methods: {
-    showLightbox: function (imageName) {
-      this.$refs.lightbox.show(imageName)
-    },
-    updateFilter (filterName) {
-      this.galleryFilter = filterName
-    }
   }
 }
 </script>

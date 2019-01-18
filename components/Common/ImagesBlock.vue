@@ -1,4 +1,5 @@
 <template lang="pug">
+my-text(:title="title")
   .ImageBlock
     .ImageBlockContainer(v-for="(thumb, index) in img_for_light")
       img.exampleImg(
@@ -18,11 +19,14 @@
 </template>
 <!-- is, v-for, v-if, v-else-if, v-else, v-show, v-cloak, v-pre, v-once, id, ref, key, slot, v-model, другие атрибуты, v-on, v-html, v-text -->
 <script>
+import TextBlock from '~/components/Common/TextBlock.vue'
 export default {
-  components: {},
+  components: {
+    'my-text': TextBlock
+  },
   mixins: [],
   model: [],
-  props: ['images'],
+  props: ['images', 'title'],
   data () {
     return {
       thumbnailDir: process.env.baseUrl
@@ -83,11 +87,12 @@ export default {
   justify-content: center;
 }
 .ImageBlockContainer {
-  height: 300px;
+  height: 250px;
   overflow: hidden;
   background: grey;
   text-align: center;
-  margin: .1em;
+  margin: .15em;
+  box-shadow: 0 0 0.2em rgb(0,0,0,0.3);
 }
 .ImageBlock img {
   display: inline-block;

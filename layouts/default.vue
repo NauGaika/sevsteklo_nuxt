@@ -10,30 +10,15 @@
           alt="")
 </template>
 <script>
-if (process.client) {
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym")
-   ym(51433120, "init", {
-        id:51433120,
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   })
-}
 import HeaderContainer from '~/components/Header/HeaderContainer.vue'
 import FooterContainer from '~/components/Footer/FooterContainer.vue'
   export default {
     name: 'App',
+    middleware: "start",
     components: {
       'header-container': HeaderContainer,
       'footer-container': FooterContainer
-    },
-    created: function () {
-      this.$store.dispatch('HeaderMenu/getMenuPointsFromDb')
-      this.$store.dispatch('CommonProps/getCommonProps')
-    },
+    }
   }
 </script>
 <style>
@@ -129,12 +114,7 @@ a, a:hover, a:active {
 }
 .exampleImg {
   display: inline-block !important;
-  padding: 0.3em;
-  box-shadow: 0 0 0.1em rgb(0,0,0,0.3);
-  width: 250px;
-  height: auto;
   cursor: pointer;
-  margin-bottom: .3em;
 }
 .catTitle {
   margin-top: 1em;

@@ -13,21 +13,12 @@ export default {
   },
   data () {
     return {
-      vk: "",
-      viber: "",
-      whatsapp: "",
+      vk: this.$store.getters['CommonProps/getCommonProp']('vk'),
+      viber: this.$store.getters['CommonProps/getCommonProp']('viber'),
+      whatsapp: this.$store.getters['CommonProps/getCommonProp']('whatsapp'),
     }
   },
   computed: {
-  },
-  beforeCreate () {
-    this.$store.dispatch('CommonProps/getCommonProps').then(() => {
-      this.viber = this.$store.getters['CommonProps/getCommonProp']('viber')
-      this.whatsapp = this.$store.getters['CommonProps/getCommonProp']('whatsapp')
-      // this.commonParams.telegram = this.$store.getters['CommonProps/getCommonProp']('telegramm')
-      this.vk = this.$store.getters['CommonProps/getCommonProp']('vk')
-      // console.log(this.commonParams.vk)
-    })
   }
 }
 </script>

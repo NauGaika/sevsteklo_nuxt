@@ -23,9 +23,9 @@ export default {
   data: function () {
     return {
       commonParams: {
-        'email': '',
-        'telephone_number': '',
-        'telephone_number_2': ''
+        'email': this.$store.getters['CommonProps/getCommonProp']('email'),
+        'telephone_number': this.$store.getters['CommonProps/getCommonProp']('telephone_number'),
+        'telephone_number_2': this.$store.getters['CommonProps/getCommonProp']('telephone_number_2')
       }
     }
   },
@@ -53,14 +53,7 @@ export default {
       fas () {
          return fas
       }
-    },
-  mounted () {
-    this.$store.dispatch('CommonProps/getCommonProps').then(() => {
-      this.commonParams.email = this.$store.getters['CommonProps/getCommonProp']('email')
-      this.commonParams.telephone_number = this.$store.getters['CommonProps/getCommonProp']('telephone_number')
-      this.commonParams.telephone_number_2 = this.$store.getters['CommonProps/getCommonProp']('telephone_number_2')
-    })
-  }
+    }
 }
 
 </script>
