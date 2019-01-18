@@ -16,25 +16,16 @@ export default {
   data () {
     return {
       commonParams: {
-        'email': '',
-        'telephone_number': '',
-        'city': '',
-        'street': '',
-        'build': ''
+        'email': this.$store.getters['CommonProps/getCommonProp']('email'),
+        'telephone_number': this.$store.getters['CommonProps/getCommonProp']('telephone_number'),
+        'city': this.$store.getters['CommonProps/getCommonProp']('city'),
+        'street': this.$store.getters['CommonProps/getCommonProp']('street'),
+        'build': this.$store.getters['CommonProps/getCommonProp']('build')
       }
     }
   },
   methods: {
     
-  },
-  mounted () {
-    this.$store.dispatch('CommonProps/getCommonProps').then(() => {
-      this.commonParams.email = this.$store.getters['CommonProps/getCommonProp']('email')
-      this.commonParams.telephone_number = this.$store.getters['CommonProps/getCommonProp']('telephone_number')
-      this.commonParams.city = this.$store.getters['CommonProps/getCommonProp']('city')
-      this.commonParams.street = this.$store.getters['CommonProps/getCommonProp']('street')
-      this.commonParams.build = this.$store.getters['CommonProps/getCommonProp']('build')
-    })
   }
 }
 </script>
