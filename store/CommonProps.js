@@ -41,7 +41,6 @@ const CommonProps = {
     },
     getCommonProp: state => name => {
       let par = state.commonProps[name]
-      console.log(par)
       if (par != undefined) {
         return state.commonProps[name].value
       } else {
