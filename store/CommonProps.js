@@ -14,7 +14,7 @@ const CommonProps = {
   actions: {
     getCommonProps ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        const path = `http://127.0.0.1:3000/api/get-all/common_props`
+        const path = `http://sev-steklo.ru/api/get-all/common_props`
         axios.get(path)
         .then(response => {
           let data = response.data
@@ -41,6 +41,7 @@ const CommonProps = {
     },
     getCommonProp: state => name => {
       let par = state.commonProps[name]
+      console.log(par)
       if (par != undefined) {
         return state.commonProps[name].value
       } else {
