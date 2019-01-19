@@ -2,12 +2,12 @@
   .FooterContacts
     h3 Контакты
     ul
-      li Адрес: г. {{commonParams.city}} ул. {{commonParams.street}} {{commonParams.build}}
+      li 
+        a(href="/contacts") Адрес: г. {{getCommonProp('city')}} ул. {{getCommonProp('street')}} {{getCommonProp('build')}}
       li График работы: 8:00-17:00
-      li e-mail: {{commonParams.email}}
-      li ООО "Лимаренко"
-      li Телефон: {{commonParams.telephone_number}}
-    vue-ya-metrica( :counter="51433120" enable-hash enable-webvisor)
+      li e-mail: {{getCommonProp('email')}}
+      li {{getCommonProp('organization')}}
+      li Телефон: {{getCommonProp('telephone_number')}}
 
 </template>
 <script>
@@ -25,7 +25,9 @@ export default {
     }
   },
   methods: {
-    
+    getCommonProp (prop) {
+      return this.$store.getters['CommonProps/getCommonProp'](prop)
+    }  
   }
 }
 </script>

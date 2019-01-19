@@ -6,7 +6,7 @@ module.exports = {
     middleware: ['start']
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://sev-steklo.ru'
+    baseUrl: process.env.BASE_URL || 'http://127.0.0.1:3000'
   },
   head: {
     title: 'Мир стекла и зеркал г. Севастополь',
@@ -48,7 +48,7 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    '/api': 'http://api.sev-steklo.ru'
+    '/api': 'http://127.0.0.1:5000/api/'
   },
   build: {
     vendor: ['axios'],

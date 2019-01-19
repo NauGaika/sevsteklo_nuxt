@@ -15,7 +15,7 @@ const HeaderMenu = {
   actions: {
     getMenuPointsFromDb ({ commit, state }) {
       if (state.menuPoints.length === 0) {
-        const path = `http://sev-steklo.ru/api/get-menu-point/`
+        const path = `http://127.0.0.1:5000/api/get-menu-point/`
         axios.get(path)
           .then(response => {
             let data = response.data

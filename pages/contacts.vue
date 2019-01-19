@@ -3,34 +3,23 @@ div.container
   text-block(title="Где мы находимся?")
     span.adress
       span.
-        г. Севастополь ул.Острякова 166Б
-    iframe(src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad21c1a83867d8e2c88ac7f354714eb10040db20306dded2fc1ab4a41030b81a3&amp;source=constructor",
-    width="100%",
-    height="600",
-    frameborder="0")
+        г. {{getCommonProp('city')}} ул. {{getCommonProp('street')}} {{getCommonProp('build')}}
+    iframe(
+      src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad21c1a83867d8e2c88ac7f354714eb10040db20306dded2fc1ab4a41030b81a3&amp;source=constructor",
+      width="100%",
+      :height="maxHeight",
+      frameborder="0")
   text-block(title="Есть ли у нас парковка?")
     span У нас весьма просторная паркова и всегда найдется место для вашего автомобиля
   text-block(title="Как с нами связаться?")
-    span(class="point_of_contact add_space")
-      a(href="tel:+79788167295")
-        fa(:icon="fas.faPhone")
-        span(class="add_blue add_space_h") +7 (978) 816-72-95
-    span(class="point_of_contact add_space")
-      a(href="tel:+79788021371")
-        fa(:icon="fas.faPhone")
-        span(class="add_blue add_space_h") +7 (978) 802-13-71
-    span(class="point_of_contact add_space")
-      a(href="viber://add?number=+7978167295")
-        fa(:icon="fab.faViber")
-        span(class="add_blue add_space_h") +7 (978) 816-72-95
-    span(class="point_of_contact add_space")
-      a(href="http://www.vk.com/sev_steklo")
-        fa(:icon="fab.faVk")
-        span(class="add_blue add_space_h") sev_steklo
+    span(v-for="(val, key) in contacts" class="point_of_contact")
+      a(:href="formatElement(val).pref + formatElement(val).valDb")
+        fa(:icon="formatElement(val).fa")
+        span(class="add_blue add_space_h") {{formatElement(val).val}}
   text-block(title="График нашей работы")
     span.sheduled Мы работаем Пн-Сб 8:00 - 17:00 Вс - выходной
   text-block(title="Необходима юридическая информация о нас?")
-    span(v-for="(val,key) in com_param") {{val.name + ': ' + get_common_prop(key)}} </br>
+    span(v-for="(val,key) in adm_param") {{val.name + ': ' + getCommonProp(key)}} </br>
 </template>
 
 <script>
@@ -50,7 +39,8 @@ export default {
   },
   data: function () {
     return {
-      com_param: {
+      maxHeight: 600,
+      adm_param: {
         organization: {name: 'Наименование'},
         inn: {name: 'ИНН'},
         ogrnip: {name: 'ОГРНИП'},
@@ -59,7 +49,32 @@ export default {
         bank: {name: 'Банк'},
         bik: {name: 'БИК'},
         adress: {name: 'Юр. Адрес'}
-      }
+      },
+      contacts: [
+        {
+          name: 'telephone_number', 
+          fa: ['fas', 'faPhone'],
+          compFunc: 'formatTelephone',
+          pref:'tel:'
+        },
+        {
+          name: 'telephone_number_2', 
+          fa: ['fas', 'faPhone'],
+          compFunc: 'formatTelephone',
+          pref:'viber://add?number=', 
+        },
+        {
+          name: 'viber', 
+          fa: ['fab', 'faViber'],
+          compFunc: 'formatTelephone',
+          pref:'tel:', 
+        },
+        {
+          name: 'vk', 
+          fa: ['fab', 'faVk'],
+          pref:'http://www.vk.com/',
+        }
+      ]
     }
   },
   components: {
@@ -92,8 +107,25 @@ export default {
       }
       return tel
     },
-    get_common_prop (prop) {
+    getCommonProp (prop) {
       return this.$store.getters['CommonProps/getCommonProp'](prop)
+    },
+    formatElement (el) {
+      let newEl = {}
+      newEl.name = el.name
+      newEl.pref = el.pref
+      newEl.fa = this[el.fa[0]][el.fa[1]]
+      newEl.val = el.compFunc ? this[el.compFunc](this.getCommonProp(el.name)) : this.getCommonProp(el.name)
+      newEl.valDb = this.getCommonProp(el.name)
+      return newEl
+    }
+  },
+  mounted () {
+    if (process.browser) {
+      this.maxHeight = window.innerHeight - 100
+      if (this.maxHeight > 500) {
+        this.maxHeight = 500
+      }
     }
   }
 }
