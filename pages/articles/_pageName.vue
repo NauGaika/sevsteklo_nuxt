@@ -18,7 +18,7 @@ export default {
   model: [],
   props: [],
   asyncData ({ params, error }) {
-    return axios.get(`http:/api.sev-steklo.ru/api/article/get-article/${params.pageName}`)
+    return axios.get(`http://api.sev-steklo.ru/api/article/get-article/${params.pageName}`)
     .then((res) => {
       return {
         title: res.data.title,
