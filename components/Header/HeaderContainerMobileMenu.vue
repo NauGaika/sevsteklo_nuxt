@@ -6,7 +6,7 @@ div.MobileMenu
     img(src="/img/logo.png")
     div.MobileMenuULContainer(v-bind:class="{ 'MobileMenuULContainer-opened' : menuIsOpen, 'MobileMenuULContainer-closed' : !menuIsOpen }")
         ul
-          li(v-for="(point, keyPoint) in this.$store.getters['HeaderMenu/getMenuPoints']")
+          li(v-for="(point, keyPoint) in menuPoints")
             a.MobileMenuLink(:href="point.src" v-if="point.sub_point.length == 0" :title="point.title" @click="changeMenuState") {{point.title}}
             a.MobileMenuTitle(v-if="point.sub_point.length != 0"  @click="changeMenuPointState({refName:'point_'+keyPoint, key: keyPoint})") {{point.title}}
               point-button(v-if="point.sub_point.length != 0" v-bind:ref="'point_'+keyPoint" v-bind:keyPoint="keyPoint")
@@ -32,7 +32,8 @@ export default {
   data: function () {
     return {
       menuIsOpen: false,
-      timer: ''
+      timer: '',
+      menuPoints: this.$store.getters['HeaderMenu/getMenuPoints']
     }
   },
   methods: {

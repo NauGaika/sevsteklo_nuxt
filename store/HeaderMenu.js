@@ -14,7 +14,6 @@ const HeaderMenu = {
   },
   actions: {
     getMenuPointsFromDb ({ commit, state }) {
-      if (state.menuPoints.length === 0) {
         const path = `http://127.0.0.1:5000/api/get-menu-point/`
         axios.get(path)
           .then(response => {
@@ -27,7 +26,6 @@ const HeaderMenu = {
           .catch(error => {
             console.log(error)
           })
-      }
     }
   },
   getters: {

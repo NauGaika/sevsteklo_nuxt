@@ -15,13 +15,6 @@ import VueYaMetrica from '~/assets/CommonScripts/VueYaMetrica'
 export default {
   data () {
     return {
-      commonParams: {
-        'email': this.$store.getters['CommonProps/getCommonProp']('email'),
-        'telephone_number': this.$store.getters['CommonProps/getCommonProp']('telephone_number'),
-        'city': this.$store.getters['CommonProps/getCommonProp']('city'),
-        'street': this.$store.getters['CommonProps/getCommonProp']('street'),
-        'build': this.$store.getters['CommonProps/getCommonProp']('build')
-      }
     }
   },
   methods: {

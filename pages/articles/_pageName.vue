@@ -18,12 +18,13 @@ export default {
   model: [],
   props: [],
   asyncData ({ params, error }) {
-    return axios.get(`http://127.0.0.1:3000/api/article/get-article/${params.pageName}`)
+    return axios.get(`http://127.0.0.1:5000/api/article/get-article/${params.pageName}`)
     .then((res) => {
       return {
         title: res.data.title,
         description: res.data.description,
-        containers: res.data.containers
+        containers: res.data.containers,
+        pageType: res.data.type
       }
     })
     .catch((e) => {
