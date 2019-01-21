@@ -16,7 +16,7 @@ export default {
   model: [],
   props: [],
   async asyncData () {
-    return axios.get(`http:/api.sev-steklo.ru/api/article/get-all-article-title`)
+    return axios.get(`http://api.sev-steklo.ru/api/article/get-all-article-title`)
     .then((res) => {
       return {
         big_data: res.data
