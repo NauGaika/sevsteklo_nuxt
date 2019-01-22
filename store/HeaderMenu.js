@@ -14,7 +14,7 @@ const HeaderMenu = {
   },
   actions: {
     getMenuPointsFromDb ({ commit, state }) {
-        const path = `http://api.sev-steklo.ru/api/get-menu-point/`
+        const path = `${process.env.reqUrl}/get-menu-point/`
         axios.get(path)
           .then(response => {
             let data = response.data

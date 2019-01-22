@@ -14,7 +14,6 @@ import HeaderContainer from '~/components/Header/HeaderContainer.vue'
 import FooterContainer from '~/components/Footer/FooterContainer.vue'
   export default {
     name: 'App',
-    middleware: "start",
     components: {
       'header-container': HeaderContainer,
       'footer-container': FooterContainer

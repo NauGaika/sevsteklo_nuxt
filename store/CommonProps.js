@@ -14,7 +14,7 @@ const CommonProps = {
   actions: {
     getCommonProps ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        const path = `http://api.sev-steklo.ru/api/get-all/common_props`
+        const path = `${process.env.reqUrl}/get-all/common_props`
         axios.get(path)
         .then(response => {
           let data = response.data

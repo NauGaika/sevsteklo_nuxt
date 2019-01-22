@@ -3,18 +3,14 @@ div
   h1(style="margin-top: 1em") Доставка стекла и стеклянных изделий в Севастополе
   text-block(title="Стоимость доставки")
   table(cellspacing="0")
-    tr
-      th(width="50%") Район доставки
-      th Стоимость доставки
-    tr
-      td Гагаринский район
-      td 500 руб.
-    tr
-      td Ленинский район
-      td 700 руб.
-    tr
-      td Балаклава
-      td 700 руб.
+    thead
+      tr
+        th(width="50%") Район доставки
+        th Стоимость доставки
+    tbody
+      tr(v-for="i in delivery" :key="'delivery = ' + i.id")
+        td {{i.region}}
+        td {{i.price}} руб.
   text-block(title="Карта доставки")
     iframe(src="https://yandex.ru/map-widget/v1/?um=constructor%3A8a289300a431fc11c62012e21cc2abe2c5542684b00932fb0b4a161c73ddefdc&amp;source=constructor"
         width="100%"
@@ -24,6 +20,7 @@ div
 
 <script>
 import TextBlock from '~/components/Common/TextBlock.vue'
+import axios from 'axios'
 export default {
   head () {
     return {
@@ -34,6 +31,16 @@ export default {
           { hid: 'lang', name: 'lang', content: 'ru-RU' }
         ]
       }
+  },
+  async asyncData ({ error }) {
+    return axios.get(`${process.env.reqUrl}/delivery/get-delivery-list/`)
+    .then((res) => {
+      return {
+        delivery: res.data
+      }
+    }).catch((e) => {
+      error({statusCode: 404, message: 'Не найдены места доставки'})
+    })
   },
   components: {
     'text-block': TextBlock
